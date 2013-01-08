@@ -50,11 +50,13 @@ public class HttpRequest {
       }
       this.url = url;
     }
-    public void header(String name, String value) {
+    public Builder header(String name, String value) {
       headers.put(name, value);
+      return this;
     }
-    public void setBody(String body) {
+    public Builder setBody(String body) {
       this.body = body;
+      return this;
     }
     public HttpRequest build() {
       return new HttpRequest(method, url, headers, body);
