@@ -11,7 +11,8 @@ Here is an example of how to use playn-http:
     requestBuilder.header("Header1", "Value1");
     requestBuilder.header("Content-Type", "application/json; charset=utf-8");
     requestBuilder.setBody("{'foo':'bar'}");
-    Http.send(request.new Callback<HttpResponse>() {
+    HttpRequest request = requestBuilder.build();
+    Http.send(request, new Callback<HttpResponse>() {
       @Override public void onSuccess(HttpResponse response) {
         int httpStatusCode = response.getStatusCode();
         String responseBody = response.getBody();
