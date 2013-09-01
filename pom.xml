@@ -21,6 +21,16 @@
     <playn.version>1.5.1</playn.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+
+  <!-- Release process:
+       1. ensure you have snapshot-repo.url and release-repo.url defined in your .m2/settings.xml
+       2. update any maven plugin/dependency versions, if needed
+       3. Call mvn -s ~/.m2/settings.xml release:clean
+       4. Call mvn -s ~/.m2/settings.xml release:prepare -DdryRun=true
+          Usually, the default answers are good enough.
+       5. Call mvn -s ~/.m2/settings.xml release:prepare
+       6. Call mvn -s ~/.m2/settings.xml release:perform
+    -->
   <distributionManagement>
     <snapshotRepository>
       <id>cloudbees-private-snapshot-repository</id>
