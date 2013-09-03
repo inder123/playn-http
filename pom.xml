@@ -23,7 +23,7 @@
   </properties>
 
   <!-- Release process:
-       1. ensure you have snapshot-repo.url and release-repo.url defined in your .m2/settings.xml
+       1. ensure you have sonatype-nexus-snapshots and sonatype-nexus-staging defined in your .m2/settings.xml
        2. update any maven plugin/dependency versions, if needed
        3. Call mvn -s ~/.m2/settings.xml release:clean
        4. Call mvn -s ~/.m2/settings.xml release:prepare -DdryRun=true
@@ -33,14 +33,14 @@
     -->
   <distributionManagement>
     <snapshotRepository>
-      <id>cloudbees-private-snapshot-repository</id>
-      <name>Cloudbees Private Repository</name>
-      <url>${snapshot-repo.url}</url>
+      <id>sonatype-nexus-snapshots</id>
+      <name>Sonatype Nexus Snapshots</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
     </snapshotRepository>
     <repository>
-      <id>cloudbees-private-release-repository</id>
-      <name>Cloudbees Private Repository</name>
-      <url>${release-repo.url}</url>
+      <id>sonatype-nexus-staging</id>
+      <name>Nexus Release Repository</name>
+      <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
   </distributionManagement>
   <modules>
@@ -80,5 +80,27 @@
       </extension>
     </extensions>
   </build>
+  <profiles>
+    <profile>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.4</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
 
