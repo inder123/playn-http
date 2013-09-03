@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.singhinderjeet</groupId>
     <artifactId>playn-http</artifactId>
-    <version>1.2</version>
+    <version>1.3-SNAPSHOT</version>
   </parent>
   <artifactId>playn-http-html</artifactId>
   <packaging>jar</packaging>
